@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
+import {Counter} from "./components/Counter";
+import {IncreaseButton} from "./components/IncreaseButton";
+import {ResetButton} from "./components/ResetButton";
 
 function App() {
     const [count, setCount] = useState<number>(0);
@@ -14,10 +17,12 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <div className={count === 5 ? "ValueMaxCheck" : 'ValueCheck'}>{count}</div>
-            <button className={"IncreaseButton"} disabled={count === 5} onClick={increaseCount}>increase</button>
-            <button className={"ResetButton"} disabled={count !== 5} onClick={resetCount}>reset</button>
+        <div className={"App"}>
+            <div className={"Counter"}>
+                <Counter counter={count}/>
+                <IncreaseButton counter={count} increaseCount={increaseCount}/>
+                <ResetButton counter={count} resetCount={resetCount}/>
+            </div>
         </div>
     );
 }

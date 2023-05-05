@@ -1,18 +1,32 @@
 .App {
+  background-color: aqua;
+  background-size: 100%;
+}
+
+.Counter {
   display: block;
   text-align: center;
-  border: 2px solid aqua;
+  border: 2px solid grey;
   width: 500px;
   height: 500px;
+  background-color: #4c1eff;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ValueCheck{
+  font-size: 35px;
   color: black;
   border: 2px solid black;
+  padding: 30px;
+  margin: 20px;
 }
 .ValueMaxCheck {
+  font-size: 35px;
   color: red;
   border: 2px solid red;
+  padding: 30px;
+  margin: 20px;
 }
 
 

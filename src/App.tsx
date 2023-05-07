@@ -16,14 +16,20 @@ function App() {
         setCount(0)
     };
 
-    return (
+    return (<div>
         <div className={"App"}>
             <div className={"Counter"}>
                 <Counter counter={count}/>
                 <IncreaseButton counter={count} increaseCount={increaseCount}/>
                 <ResetButton counter={count} resetCount={resetCount}/>
             </div>
+            <div className={"Counter"}>
+                <Counter counter={count}/>
+                <IncreaseButton counter={count} increaseCount={increaseCount}/>
+                <ResetButton counter={count} resetCount={resetCount}/>
+            </div>
         </div>
+</div>
     );
 }
 

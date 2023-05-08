@@ -1,14 +1,15 @@
 import React from "react";
 
 type ResetButtonPropsType = {
-    counter: number
+    countStartValue: number;
+    countMaxValue: number;
     resetCount: () => void
 }
 
 export function ResetButton (props: ResetButtonPropsType) {
     return (
         <span>
-            <button className={"ResetButton"} disabled={props.counter !== 5} onClick={props.resetCount}>reset</button>
+            <button className={"ResetButton"} onClick={props.resetCount}>reset</button>
         </span>
     )
 }

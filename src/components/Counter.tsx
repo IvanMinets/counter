@@ -1,14 +1,15 @@
 import React from 'react';
 
 type CounterProps = {
-    counter: number;
+    countStartValue: number;
+    countMaxValue: number;
 }
 
 export function Counter (props: CounterProps) {
 
     return (
         <div>
-            <div className={props.counter === 5 ? "ValueMaxCheck" : 'ValueCheck'}>{props.counter}</div>
+            <div className={props.countStartValue === props.countMaxValue ? "ValueMaxCheck" : "ValueCheck"}>{props.countStartValue}</div>
         </div>
     )
 }

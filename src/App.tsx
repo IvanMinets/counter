@@ -5,9 +5,8 @@ import {IncreaseButton} from "./components/IncreaseButton";
 import {ResetButton} from "./components/ResetButton";
 
 function App() {
-    const [count, setCount] = useState<number>(0);
-    const [countMaxValue, setCountMaxValue] = useState<number>(0);
     const [countStartValue, setCountStartValue] = useState<number>(0);
+    const [countMaxValue, setCountMaxValue] = useState<number>(0);
 
     //функции для взятия текущего значения (перерисовки) инпута
     const onMaxValueChangeHandler = (e: any) => {
@@ -18,18 +17,10 @@ function App() {
     }
     // функция проверки допустимых значений счётчика
     const valueChecker = () => {
-        if (countStartValue >= countMaxValue) {
-            return true
-        }
-        else {
-            return false
-        }
+        return countStartValue >= countMaxValue;
     }
-    const StartValueChecker = () => {
-    if (countStartValue < 0) {
-            return true
-        }
-    }
+    const StartValueChecker = () => countStartValue < 0;
+
 
     //функция для кнопки увеличения значения
     const increaseCount = () => {

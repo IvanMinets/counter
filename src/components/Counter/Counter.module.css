@@ -1,0 +1,28 @@
+.SettingsBlock {
+    display:inline-block;
+    border:1px solid aqua;
+    margin: 30px;
+    padding: 50px;
+    justify-content: center;
+}
+.CounterBlock {
+    display:inline-block;
+    border: 1px solid aqua;
+    margin: 30px;
+    padding: 45px;
+}
+
+.CounterText {
+    color: aqua;
+    font-size: 40px;
+    text-align: center;
+}
+
+.SetButton {
+
+}
+
+label {
+    color: aqua;
+
+}

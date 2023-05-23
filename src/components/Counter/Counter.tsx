@@ -1,12 +1,13 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import SuperButton from "../SuperButton/SuperButton";
+import s from './Counter.module.css'
 
 type CounterProps = {}
 
 const Counter: React.FC<CounterProps> = () => {
     const [startValue, setStartValue] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(10);
-    const [counter, setCounter] = useState<string>('enter values and press "Set"');
+    const [counter, setCounter] = useState<string>('enter values and press "set"');
 
     // При загрузке компонента проверяем, есть ли значения в Local Storage и устанавливаем их
     useEffect(() => {
@@ -24,7 +25,7 @@ const Counter: React.FC<CounterProps> = () => {
         localStorage.setItem('startValue', startValue.toString());
         localStorage.setItem('maxValue', maxValue.toString());
     }, [startValue, maxValue]);
-    
+
     const handleStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
         setStartValue(value);
@@ -39,11 +40,6 @@ const Counter: React.FC<CounterProps> = () => {
     };
 
     const handleSetClick = () => {
-        if (startValue >= maxValue) {
-            alert('Start value must be less than Max value');
-            return;
-        }
-
         setCounter(startValue.toString());
     };
 
@@ -61,32 +57,36 @@ const Counter: React.FC<CounterProps> = () => {
         setCounter(startValue.toString());
     };
 
-    const isIncreaseDisabled = parseInt(counter) === maxValue || counter === 'enter values and press "Set"';
-    const isResetDisabled = parseInt(counter) === startValue || counter === 'enter values and press "Set"';
+    const isIncreaseDisabled = parseInt(counter) === maxValue || counter === 'enter values and press "set"';
+    const isResetDisabled = parseInt(counter) === startValue || counter === 'enter values and press "set"';
     const isSetDisabled = startValue === maxValue || startValue > maxValue;
 
     return (
         <div>
-            <label>
-                Start value:
-                <input type="number" value={startValue} onChange={handleStartValueChange} min={0}/>
-            </label>
-            <br/>
-            <label>
-                Max value:
-                <input type="number" value={maxValue} onChange={handleMaxValueChange}/>
-            </label>
-            <br/>
-            <SuperButton onClick={handleSetClick} disabled={isSetDisabled}>Set</SuperButton>
-            <br/>
-            <div>{counter}</div>
-            <br/>
-            <SuperButton onClick={handleIncreaseClick} disabled={isIncreaseDisabled}>
-                Increase
-            </SuperButton>
-            <SuperButton onClick={handleResetClick} disabled={isResetDisabled}>
-                Reset
-            </SuperButton>
+            <div className={s.SettingsBlock}>
+                <label>
+                    Start value:
+                    <input type="number" value={startValue} onChange={handleStartValueChange} min={0}/>
+                </label>
+                <br/>
+                <label>
+                    Max value:
+                    <input type="number" value={maxValue} onChange={handleMaxValueChange}/>
+                </label>
+                <br/>
+                <SuperButton onClick={handleSetClick} disabled={isSetDisabled}>Set</SuperButton>
+                <br/>
+            </div>
+            <div className={s.CounterBlock}>
+                <div className={s.CounterText}>{counter}</div>
+                <br/>
+                <SuperButton onClick={handleIncreaseClick} disabled={isIncreaseDisabled}>
+                    Increase
+                </SuperButton>
+                <SuperButton onClick={handleResetClick} disabled={isResetDisabled}>
+                    Reset
+                </SuperButton>
+            </div>
         </div>
     );
 };

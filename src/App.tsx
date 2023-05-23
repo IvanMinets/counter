@@ -1,8 +1,10 @@
 import React from "react";
-import Counter from "./components/Counter";
+import Counter from "./components/Counter/Counter";
+import './App.css'
+
 
 function App () {
-    return <div>
+    return <div className="wrapper">
         <Counter/>
     </div>
 }

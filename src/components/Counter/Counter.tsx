@@ -1,5 +1,5 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
-import SuperButton from "./SuperButton";
+import SuperButton from "../SuperButton/SuperButton";
 
 type CounterProps = {}
 
@@ -24,7 +24,7 @@ const Counter: React.FC<CounterProps> = () => {
         localStorage.setItem('startValue', startValue.toString());
         localStorage.setItem('maxValue', maxValue.toString());
     }, [startValue, maxValue]);
-
+    
     const handleStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
         setStartValue(value);
@@ -62,7 +62,8 @@ const Counter: React.FC<CounterProps> = () => {
     };
 
     const isIncreaseDisabled = parseInt(counter) === maxValue || counter === 'enter values and press "Set"';
-    const isResetDisabled = counter === 'enter values and press "Set"' || parseInt(counter) === startValue;
+    const isResetDisabled = parseInt(counter) === startValue || counter === 'enter values and press "Set"';
+    const isSetDisabled = startValue === maxValue || startValue > maxValue;
 
     return (
         <div>
@@ -70,16 +71,16 @@ const Counter: React.FC<CounterProps> = () => {
                 Start value:
                 <input type="number" value={startValue} onChange={handleStartValueChange} min={0}/>
             </label>
-            <br />
+            <br/>
             <label>
                 Max value:
-                <input type="number" value={maxValue} onChange={handleMaxValueChange} />
+                <input type="number" value={maxValue} onChange={handleMaxValueChange}/>
             </label>
-            <br />
-            <SuperButton onClick={handleSetClick} disabled={false}>Set</SuperButton>
-            <br />
+            <br/>
+            <SuperButton onClick={handleSetClick} disabled={isSetDisabled}>Set</SuperButton>
+            <br/>
             <div>{counter}</div>
-            <br />
+            <br/>
             <SuperButton onClick={handleIncreaseClick} disabled={isIncreaseDisabled}>
                 Increase
             </SuperButton>

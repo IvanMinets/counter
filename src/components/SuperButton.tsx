@@ -1,9 +1,9 @@
-import React from "react";
+import React, {ReactNode} from "react";
 
 type SuperButtonProps ={
     onClick: () => void;
     disabled: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const SuperButton: React.FC<SuperButtonProps> = ({ onClick, disabled, children }) => {

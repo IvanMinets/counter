@@ -5,6 +5,7 @@ import s from './Counter.module.css'
 type CounterProps = {}
 
 const Counter: React.FC<CounterProps> = () => {
+    console.log('123')
     const [startValue, setStartValue] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(10);
     const [counter, setCounter] = useState<string>('enter values and press "set"');

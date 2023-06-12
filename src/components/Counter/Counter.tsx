@@ -11,10 +11,6 @@ type CounterProps = {}
 
 const Counter: React.FC<CounterProps> = () => {
     console.log('counter rendered')
-    // const [startValue, setStartValue] = useState<number>(0);
-    // const [maxValue, setMaxValue] = useState<number>(10);
-    // const [counter, setCounter] = useState<string>('enter values and press "set"');
-
     // При загрузке компонента проверяем, есть ли значения в Local Storage и устанавливаем их
     // useEffect(() => {
     //     const savedStartValue = localStorage.getItem('startValue');
@@ -39,49 +35,24 @@ const Counter: React.FC<CounterProps> = () => {
     const dispatch = useDispatch();
 
     const handleStartValueChange = (element: ChangeEvent<HTMLInputElement>) => {
-        // const value = parseInt(element.target.value);
-        // if (value >= 0) {
-        //     setStartValue(value);
-        // }
         dispatch(startValueChangeAC(element))
     };
 
     const handleMaxValueChange = (element: ChangeEvent<HTMLInputElement>) => {
-        // const value = parseInt(element.target.value);
-        // setMaxValue(value);
         dispatch(maxValueChangeAC(element))
     };
 
     const handleSetClick = () => {
-        // setCounter(startValue.toString());
         dispatch(setClickAC(startValue))
     };
 
     const handleIncreaseClick = () => {
-        // const currentValue = parseInt(counter);
-        // if (currentValue === maxValue) {
-        //     return;
-        // }
-        // setCounter((currentValue + 1).toString());
         dispatch(setIncreaseClickAC(maxValue))
     };
 
     const handleResetClick = () => {
-        // setCounter(startValue.toString());
         dispatch(setResetClickAC(startValue))
     };
-
-    // const isIncreaseDisabledChecker = () => {
-    //     if (typeof counter === "string") {
-    //         return parseInt(counter) === maxValue || counter === 'enter values and press "set"';
-    //     }
-    // }
-    // const isResetDisabledChecker = () => {
-    //     if (typeof counter === "string") {
-    //         return parseInt(counter) === startValue || counter === 'enter values and press "set"';
-    //     }
-    // }
-
     const isIncreaseDisabled = parseInt(counter) === maxValue || counter === 'enter values and press "set"';
     const isResetDisabled = parseInt(counter) === startValue || counter === 'enter values and press "set"';
     const isSetDisabled = startValue === maxValue || startValue > maxValue;

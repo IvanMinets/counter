@@ -27,6 +27,8 @@ const Counter: React.FC<CounterProps> = () => {
     //     localStorage.setItem('maxValue', maxValue.toString());
     // }, [startValue, maxValue]);
 
+
+
     const handleStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
         if (value >= 0) {

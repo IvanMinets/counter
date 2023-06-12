@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 
-const initialState: number = 0;
+const initialState: number = 10;
 export const maxValueReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case 'MAX-VALUE-CHANGE':

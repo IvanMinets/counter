@@ -5,7 +5,7 @@ import s from './Counter.module.css'
 type CounterProps = {}
 
 const Counter: React.FC<CounterProps> = () => {
-    console.log('123')
+    console.log('counter rendered')
     const [startValue, setStartValue] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(10);
     const [counter, setCounter] = useState<string>('enter values and press "set"');
@@ -45,11 +45,9 @@ const Counter: React.FC<CounterProps> = () => {
 
     const handleIncreaseClick = () => {
         const currentValue = parseInt(counter);
-
         if (currentValue === maxValue) {
             return;
         }
-
         setCounter((currentValue + 1).toString());
     };
 

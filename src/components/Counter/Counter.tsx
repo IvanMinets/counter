@@ -11,25 +11,24 @@ const Counter: React.FC<CounterProps> = () => {
     const [counter, setCounter] = useState<string>('enter values and press "set"');
 
     // При загрузке компонента проверяем, есть ли значения в Local Storage и устанавливаем их
-    useEffect(() => {
-        const savedStartValue = localStorage.getItem('startValue');
-        const savedMaxValue = localStorage.getItem('maxValue');
-
-        if (savedStartValue && savedMaxValue) {
-            setStartValue(parseInt(savedStartValue));
-            setMaxValue(parseInt(savedMaxValue));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedStartValue = localStorage.getItem('startValue');
+    //     const savedMaxValue = localStorage.getItem('maxValue');
+    //
+    //     if (savedStartValue && savedMaxValue) {
+    //         setStartValue(parseInt(savedStartValue));
+    //         setMaxValue(parseInt(savedMaxValue));
+    //     }
+    // }, []);
 
     // При изменении startValue или maxValue сохраняем их значения в Local Storage
-    useEffect(() => {
-        localStorage.setItem('startValue', startValue.toString());
-        localStorage.setItem('maxValue', maxValue.toString());
-    }, [startValue, maxValue]);
+    // useEffect(() => {
+    //     localStorage.setItem('startValue', startValue.toString());
+    //     localStorage.setItem('maxValue', maxValue.toString());
+    // }, [startValue, maxValue]);
 
     const handleStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
-        setStartValue(value);
         if (value >= 0) {
             setStartValue(value);
         }

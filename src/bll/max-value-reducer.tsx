@@ -15,6 +15,6 @@ export const maxValueReducer = (state = initialState, action: maxValueChangeActi
     }
 }
 
-export const startValueChangeAC = (element: ChangeEvent<HTMLInputElement>): maxValueChangeActionType => {
+export const maxValueChangeAC = (element: ChangeEvent<HTMLInputElement>): maxValueChangeActionType => {
     return {type: 'MAX-VALUE-CHANGE', element: element} as const
 }

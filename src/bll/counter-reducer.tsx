@@ -16,10 +16,11 @@ export type setResetClickActionType = {
 type ActionsType = setClickActionType | setIncreaseClickActionType | setResetClickActionType;
 
 const initialState: string = 'enter values and press "set"';
+
 export const counterReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET-CLICK':
-            return state = action.startValue.toString()
+            return state = action.startValue.toString();
         case 'SET-INCREASE-CLICK':
             let currentValue = parseInt(state);
             if (currentValue === action.maxValue) {

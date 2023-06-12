@@ -1,14 +1,19 @@
 import React, {useState, useEffect, ChangeEvent} from 'react';
 import SuperButton from "../SuperButton/SuperButton";
 import s from './Counter.module.css'
+import {useDispatch, useSelector} from "react-redux";
+import {CounterStateType} from "../../bll/store";
+import {startValueChangeAC} from "../../bll/start-value-reducer";
+import {setClickAC, setIncreaseClickAC, setResetClickAC} from "../../bll/counter-reducer";
+import {maxValueChangeAC} from "../../bll/max-value-reducer";
 
 type CounterProps = {}
 
 const Counter: React.FC<CounterProps> = () => {
     console.log('counter rendered')
-    const [startValue, setStartValue] = useState<number>(0);
-    const [maxValue, setMaxValue] = useState<number>(10);
-    const [counter, setCounter] = useState<string>('enter values and press "set"');
+    // const [startValue, setStartValue] = useState<number>(0);
+    // const [maxValue, setMaxValue] = useState<number>(10);
+    // const [counter, setCounter] = useState<string>('enter values and press "set"');
 
     // При загрузке компонента проверяем, есть ли значения в Local Storage и устанавливаем их
     // useEffect(() => {
@@ -27,35 +32,55 @@ const Counter: React.FC<CounterProps> = () => {
     //     localStorage.setItem('maxValue', maxValue.toString());
     // }, [startValue, maxValue]);
 
+    const startValue = useSelector<CounterStateType, number>(state=>state.startValue)
+    const maxValue = useSelector<CounterStateType, number>(state=>state.maxValue)
+    const counter = useSelector<CounterStateType, string>(state =>state.counter !== undefined ? state.counter : 'enter values and press "set"')
 
+    const dispatch = useDispatch();
 
-    const handleStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = parseInt(e.target.value);
-        if (value >= 0) {
-            setStartValue(value);
-        }
+    const handleStartValueChange = (element: ChangeEvent<HTMLInputElement>) => {
+        // const value = parseInt(element.target.value);
+        // if (value >= 0) {
+        //     setStartValue(value);
+        // }
+        dispatch(startValueChangeAC(element))
     };
 
-    const handleMaxValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = parseInt(e.target.value);
-        setMaxValue(value);
+    const handleMaxValueChange = (element: ChangeEvent<HTMLInputElement>) => {
+        // const value = parseInt(element.target.value);
+        // setMaxValue(value);
+        dispatch(maxValueChangeAC(element))
     };
 
     const handleSetClick = () => {
-        setCounter(startValue.toString());
+        // setCounter(startValue.toString());
+        dispatch(setClickAC(startValue))
     };
 
     const handleIncreaseClick = () => {
-        const currentValue = parseInt(counter);
-        if (currentValue === maxValue) {
-            return;
-        }
-        setCounter((currentValue + 1).toString());
+        // const currentValue = parseInt(counter);
+        // if (currentValue === maxValue) {
+        //     return;
+        // }
+        // setCounter((currentValue + 1).toString());
+        dispatch(setIncreaseClickAC(maxValue))
     };
 
     const handleResetClick = () => {
-        setCounter(startValue.toString());
+        // setCounter(startValue.toString());
+        dispatch(setResetClickAC(startValue))
     };
+
+    // const isIncreaseDisabledChecker = () => {
+    //     if (typeof counter === "string") {
+    //         return parseInt(counter) === maxValue || counter === 'enter values and press "set"';
+    //     }
+    // }
+    // const isResetDisabledChecker = () => {
+    //     if (typeof counter === "string") {
+    //         return parseInt(counter) === startValue || counter === 'enter values and press "set"';
+    //     }
+    // }
 
     const isIncreaseDisabled = parseInt(counter) === maxValue || counter === 'enter values and press "set"';
     const isResetDisabled = parseInt(counter) === startValue || counter === 'enter values and press "set"';
